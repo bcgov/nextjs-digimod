@@ -1,0 +1,5 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: ubi8-nextjs
+  namespace: c0cce6-tools
