@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css'
-import Page from './page'
-
+// import Page from './page'
+// import Pages from '../Utils/fetchWordpress'
+// import Wordpress from './wordpress'
 const appCSS=`header {
   background-color: #036;
   border-bottom: 2px solid #fcba19;
@@ -164,7 +165,7 @@ a:hover {
 `
 
 export default function Home({ data }: any) {
-  console.log("this is " + data);
+  // console.log("this is " + data);
   return (
     <div className={styles.container}>
       <style>
@@ -189,7 +190,8 @@ export default function Home({ data }: any) {
       </div>
       <h1>Welcome to Next.js!</h1>
 <p>Here is the Wordpress page loaded in a Next.js App:</p>
-      <Page data={data}/>
+      {/* <Page data={data}/> */}
+      {/* <Wordpress  data={data}/> */}
       <footer className="footer">
         <div className="container">
         <ul>
@@ -208,10 +210,11 @@ export default function Home({ data }: any) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`http://wordpress-c0cce6-dev.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/67`)
+  const res = await fetch(`https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/109`)
   const content =  await res.json();
   const  data = content.content.rendered;
-  console.log("data " + data);
+  //const data = Pages();
+  // console.log("data " + data);
   // Pass data to the page via props
   return { props: { data } }
 }

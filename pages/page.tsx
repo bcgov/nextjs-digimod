@@ -1,6 +1,8 @@
+import { StringToJSX } from '../Utils/StringToJSX';
+
 const Page = ({ data }: any) => {
     console.log("hello");
-    console.log(data);
+    // console.log(data);
     const pageCSS =`
 
     .page {
@@ -22,14 +24,7 @@ const Page = ({ data }: any) => {
       h3 {
         margin: 40px 0 0;
       }
-      ul {
-        list-style-type: none;
-        padding: 0;
-      }
-      li {
-        display: inline-block;
-        margin: 0 10px;
-      }
+
       a {
         color: #1a5a96;
       }
@@ -67,7 +62,7 @@ const Page = ({ data }: any) => {
     return (
         <div>
             <style>{pageCSS}</style>
-          <div dangerouslySetInnerHTML={{__html: data}}></div>
+            <StringToJSX domString={data}></StringToJSX>
         </div>
     );
 }
