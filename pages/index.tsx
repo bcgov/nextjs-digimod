@@ -210,7 +210,7 @@ export default function Home({ data }: any) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/109`)
+  const res = await fetch(`https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/656`)
   const content =  await res.json();
   const  data = content.content.rendered;
   //const data = Pages();

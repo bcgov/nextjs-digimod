@@ -12,7 +12,7 @@ function Pages({ pages } : any) {
   // It may be called again, on a serverless function, if
   // revalidation is enabled and a new request comes in
   export async function getStaticProps() {
-    const res = await fetch('https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/109')
+    const res = await fetch('https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/656')
     const pages = await res.json()
   
     return {
@@ -30,7 +30,7 @@ function Pages({ pages } : any) {
   // It may be called again, on a serverless function, if
   // the path has not been generated.
   export async function getStaticPaths() {
-    const res = await fetch('https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/109')
+    const res = await fetch('https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages/656')
     const pages = await res.json()
   
     // Get the paths we want to pre-render based on posts
