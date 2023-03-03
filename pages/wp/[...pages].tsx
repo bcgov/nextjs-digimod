@@ -90,7 +90,11 @@ function Pages({ pageItem }: any) {
 //     revalidate: 10, // In seconds
 //   }
 // }
-const getSlug = (path: string) => path.replace(/^\/|\/$/g, '')
+function getPathFromUrl(path: string) {
+  var pathRegex = /\/\/[^/]+\/([^?#]+)/;
+  var match = pathRegex.exec(path);
+  return match && match[1];
+}
 
 export async function getStaticProps({
   preview,
@@ -107,9 +111,9 @@ export async function getStaticProps({
   let offset: number = 0;
   let pages: any = [];
   let data: any = "[]";
-  const path = params?.pages.join('/')
+  const path = params?.pages.join('/') + '/';
   while (data?.length > 0) {
-    let url = "https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages?_fields=author,id,excerpt,title,content&per_page=100&offset=" + offset.toString();
+    let url = "https://wordpress-prod.apps.silver.devops.gov.bc.ca/wp-json/wp/v2/pages?_fields=author,id,link,excerpt,title,content&per_page=100&offset=" + offset.toString();
     console.log(url);
     const res = await fetch(url);
     //console.log(res);
@@ -141,9 +145,10 @@ export async function getStaticProps({
     //console.log(path);
   }
   //console.log(pages);
+  console.log(path);
   const pageItem = pages.find((p: any) => {
-    //console.log(p.id);
-    return p.id ? p.id == path : false
+    console.log(getPathFromUrl(p.link));
+    return p.id ? getPathFromUrl(p.link) == path : false
   }
   )
   console.log("# of pages: " + pages.length)
